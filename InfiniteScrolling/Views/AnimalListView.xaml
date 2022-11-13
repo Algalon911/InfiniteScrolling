@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="InfiniteScrolling.Views.AnimalListView"
+             Title="AnimalListView"
+             xmlns:model="clr-namespace:InfiniteScrolling.Models"
+             xmlns:viewModel="clr-namespace:InfiniteScrolling.ViewModels"
+             x:DataType="viewModel:AnimalListViewModel"
+             >
+    <StackLayout>
+        <CollectionView 
+            ItemsSource="{Binding AnimalList}" 
+            VerticalOptions="FillAndExpand"
+            RemainingItemsThreshold="2"
+            RemainingItemsThresholdReachedCommand="{Binding LoadMoreDataCommand}">
+            <CollectionView.Header>
+                <StackLayout>
+                    <ActivityIndicator 
+                        IsRunning="True" 
+                        IsVisible="{Binding IsBusy}"
+                        HeightRequest="40"
+                        HorizontalOptions="Center"/>
+                </StackLayout>
+            </CollectionView.Header>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:EntryDetails">
+                    <StackLayout Padding="10">
+                        <Label Text="{Binding API}" FontSize="Small"/>
+                        <Label Text="{Binding Category}" FontSize="Small"/>
+                        <Label Text="{Binding Description}" FontSize="Small"/>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            <CollectionView.Footer>
+                <StackLayout>
+                    <ActivityIndicator 
+                        IsRunning="True" 
+                        IsVisible="{Binding IsLoading}"
+                        HeightRequest="40"
+                        HorizontalOptions="Center"/>
+                </StackLayout>
+            </CollectionView.Footer>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>
