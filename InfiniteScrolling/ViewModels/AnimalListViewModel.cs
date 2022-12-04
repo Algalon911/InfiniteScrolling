@@ -44,7 +44,6 @@ public partial class AnimalListViewModel
     [RelayCommand]
     public async Task LoadMoreData()
     {
-        if(IsLoading) { return; }
         if (allAnimalList.Count > 0)
         {
             await Task.Delay(1000);
