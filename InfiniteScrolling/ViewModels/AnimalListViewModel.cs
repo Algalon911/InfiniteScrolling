@@ -12,8 +12,6 @@ public partial class AnimalListViewModel
     private int pageSize = 20;
     [ObservableProperty]
     private bool isBusy;
-    [ObservableProperty]
-    private bool isLoading;
 
     public ObservableCollection<EntryDetails> AnimalList { get; set; } = new ObservableCollection<EntryDetails>();
 
@@ -49,7 +47,6 @@ public partial class AnimalListViewModel
         if(IsLoading) { return; }
         if (allAnimalList.Count > 0)
         {
-            IsLoading = true;
             await Task.Delay(1000);
             var recordsToBeAdded = allAnimalList
                 .Skip(AnimalList.Count)
@@ -59,7 +56,6 @@ public partial class AnimalListViewModel
             {
                 AnimalList.Add(record);
             }
-            IsLoading = false;
         }
     }
 }

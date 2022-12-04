@@ -16,7 +16,7 @@
             <CollectionView.Header>
                 <StackLayout>
                     <ActivityIndicator 
-                        IsRunning="True" 
+                        IsRunning="{Binding IsBusy}" 
                         IsVisible="{Binding IsBusy}"
                         HeightRequest="40"
                         HorizontalOptions="Center"/>
@@ -34,8 +34,8 @@
             <CollectionView.Footer>
                 <StackLayout>
                     <ActivityIndicator 
-                        IsRunning="True" 
-                        IsVisible="{Binding IsLoading}"
+                        IsRunning="{Binding LoadMoreDataCommand.IsRunning}" 
+                        IsVisible="{Binding LoadMoreDataCommand.IsRunning}"
                         HeightRequest="40"
                         HorizontalOptions="Center"/>
                 </StackLayout>
